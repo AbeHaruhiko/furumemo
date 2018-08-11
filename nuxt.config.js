@@ -60,5 +60,10 @@ module.exports = {
     "@nuxtjs/axios",
     "~/modules/typescript.js"
   ],
-  axios: {}
+  axios: {},
+  plugins: [
+    {
+      src: '~/plugins/firestore'
+    }
+  ]
 }
