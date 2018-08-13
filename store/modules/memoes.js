@@ -55,11 +55,10 @@ export default {
 
           const payload = {
             id: change.doc.id,
-            title: change.doc.data().title,
-            description: change.doc.data().description,
-            platforms: change.doc.data().platforms,
-            million: change.doc.data().million,
-            releasedAt: new Date(change.doc.data().releasedAt.seconds * 1000)
+            amount: change.doc.data().amount,
+            itemName: change.doc.data().itemName,
+            jichitaiName: change.doc.data().jichitaiName,
+            applicationDate: change.doc.data().applicationDate
           }
 
           // 4. ミューテーションを通してステートを更新する
