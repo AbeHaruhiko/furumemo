@@ -48,7 +48,7 @@ export default {
         this.unsubscribe = null
       }
       // 3. Firestoreからデータを検索する
-      this.unsubscribe = memosRef.orderBy('releasedAt', 'asc').onSnapshot(querySnapshot => {
+      this.unsubscribe = memosRef.orderBy('applicationDate', 'asc').onSnapshot(querySnapshot => {
 
         // 6. データが更新されるたびに呼び出される
         querySnapshot.docChanges.forEach(change => {

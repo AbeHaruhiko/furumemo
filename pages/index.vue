@@ -2,6 +2,7 @@
   <section>
     <h1 class="header">Nuxt TypeScript Starter</h1>
     <div class="cards">
+      <div v-for="memo in memos" :key="memo.id">memo.itemName</div>
       <Card v-for="person in people" :key="person.id" :person="person"></Card>
     </div>
   </section>
@@ -21,7 +22,8 @@ import Card from "~/components/Card.vue"
   }
 })
 export default class extends Vue {
-  @State people
+  @State people;
+  @State memos;
 }
 </script>
 <style scoped>
