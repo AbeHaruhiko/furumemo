@@ -12,7 +12,6 @@ const config = {
 
 // initializeApp が複数回呼ばれると "Firebase App named '[DEFAULT]' already exists" が発生するので
 // apps がすでにあるか判定
-console.log(config);
 const firestore = !firebase.apps.length 
   ? firebase.initializeApp(config).firestore()
   : firebase.app().firestore();
