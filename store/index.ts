@@ -1,18 +1,6 @@
-export const state = () => ({
-  people: []
-})
+import { firebaseMutations } from 'vuexfire'
 
 export const mutations = {
-  setPeople(state, people) {
-    state.people = people
-  }
+  ...firebaseMutations
 }
 
-export const actions = {
-  async nuxtServerInit({ commit }, { app }) {
-    const people = await app.$axios.$get(
-      "./random-data.json"
-    )
-    commit("setPeople", people.slice(0, 10))
-  }
-}
