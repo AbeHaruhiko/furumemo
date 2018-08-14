@@ -1,4 +1,4 @@
-import firestore from '../../plugins/firestore'
+import firestore from '~/plugins/firestore'
 
 const memosRef = firestore.collection('memos')
 
@@ -15,6 +15,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ commit }, { app }) {
     const memos = app.$firebase.firestore().collection('memos').limit(5).get()
+    console.log(memos)
     commit("setMemos", memos.slice(0, 10))
   }
 }
