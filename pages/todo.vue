@@ -18,7 +18,7 @@ import {
 import { State, Getter } from "vuex-class"
 import Card from "~/components/Card.vue"
 import { mapGetters, mapActions } from "vuex";
-import * as memosModule from '~/store/modules/memos'
+// import * as memosModule from '../../store/modules/memos'
 
 @Component({
   components: {
