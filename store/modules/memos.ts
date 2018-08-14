@@ -4,8 +4,20 @@ import { firebaseAction } from 'vuexfire'
 
 const memosRef = firestore.collection('memos')
 
+export interface State {
+  memos: {}
+}
+
+export interface Getters {
+  items: string
+}
+
+export interface Actions {
+  init: {}
+}
+
 export const state = () => ({
-  memos: []
+  memos: [{amount: 10000}]
 })
 
 export const actions = {
@@ -15,7 +27,7 @@ export const actions = {
 }
 
 export const getters = {
-  memos: state => {
+  items: state => {
     return state.memos
   }
 }
@@ -23,7 +35,6 @@ export const getters = {
 export const {
   mapState,
   mapGetters,
-  mapMutations,
   mapActions
 } = createNamespacedHelpers('memos');
 

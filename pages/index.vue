@@ -9,38 +9,56 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Vue
-} from "nuxt-property-decorator"
-import { State, Getter } from "vuex-class"
-import Card from "~/components/Card.vue"
-import { mapGetters, mapActions } from "vuex";
-import * as memos from '~/store/modules/memos'
+// import {
+//   Component,
+//   Vue
+// } from "nuxt-property-decorator"
+// import { State, Getter } from "vuex-class"
+// import Card from "~/components/Card.vue"
+// import { mapGetters, mapActions } from "vuex";
+// import * as memosModule from '~/store/modules/memos'
 
-@Component({
-  components: {
-    Card
-  },
+// @Component({
+//   components: {
+//     Card
+//   },
+//   computed: {
+//     ...memosModule.mapGetters(['items'])  // スラッシュはstoreのモジュール/getter名
+//   },
+//   methods: {
+//     ...memosModule.mapActions(['init']) // スラッシュはstoreのモジュール/action名
+//   }
+// })
+// export default class extends Vue {
+//   @State people;
+//   @State memos;
+
+//   init: () => any
+
+//   created() {
+//     this.init()
+//   }
+//  }
+
+import { mapMutations } from 'vuex'
+
+export default {
   computed: {
-    ...memos.mapGetters({ memosGetter: 'memos/memos' })  // スラッシュはstoreのモジュール/getter名
+    todos () { return this.$store.state.todos.list }
   },
   methods: {
-    ...memos.mapActions({ memosInit: 'memos/init' }) // スラッシュはstoreのモジュール/action名
+    addTodo (e) {
+      this.$store.commit('todos/add', e.target.value)
+      e.target.value = ''
+    },
+    ...mapMutations({
+      toggle: 'todos/toggle'
+    })
+  },
+  created: () => {
+    this.addTodo('hoge')
   }
-})
-export default class extends Vue {
-  @State people;
-  @State memos;
-
-  memosInit: () => void
-  memosGetter
-
-  created() {
-    this.memosInit()
-    this.memosGetter
-  }
- }
+}
 </script>
 <style scoped>
 .header {
