@@ -1,7 +1,8 @@
 <template>
   <div class="card">
-    <h2> </h2>
-    <img :src="'https://robohash.org/' + person.first_name + '_' + person.last_name" />
+    <h2>{{ memo.jichitaiName }}</h2>
+    <div>{{ memo.itemName }}</div>
+    <div>{{ memo.amount }} 円</div>
   </div>
 </template>
 <script lang="ts">
@@ -13,7 +14,7 @@ import {
 
 @Component({})
 export default class Card extends Vue {
-  @Prop() person
+  @Prop() memo 
 }
 </script>
 <style scoped>
