@@ -22,7 +22,7 @@ export const state = () => ({
 
 export const actions = {
   init: firebaseAction(({ bindFirebaseRef }) => {
-    bindFirebaseRef('memos', memosRef)
+    bindFirebaseRef('list', memosRef) // ここでStateのlistと紐付けられる
   })
 }
 
