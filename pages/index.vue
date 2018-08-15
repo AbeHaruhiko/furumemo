@@ -13,30 +13,36 @@ import {
   Component,
   Vue
 } from "nuxt-property-decorator"
-import { State, Getter } from "vuex-class"
-import Card from "~/components/Card.vue"
+import { State, Getter, namespace } from "vuex-class"
+// import Card from "~/components/Card.vue"
 import { mapGetters, mapActions, mapState } from "vuex";
-import * as memosModule from '~/store/memos'
+// import * as memosModule from '~/store/memos'
+
+const memosMod = namespace('memos')
 
 @Component({
   components: {
-    Card
+    // Card
   },
   computed: {
-    ...memosModule.mapGetters(['items']),  // スラッシュはstoreのモジュール/getter名
-    ...memosModule.mapState(['list'])
+    // ...memosModule.mapGetters(['items']),  // スラッシュはstoreのモジュール/getter名
+    // ...memosModule.mapState(['list'])
+    // ...mapState({list: '/memos/list'})
   },
   methods: {
-    ...memosModule.mapActions(['init']) // スラッシュはstoreのモジュール/action名
+    // ...memosModule.mapActions(['init']) // スラッシュはstoreのモジュール/action名
+    // ...mapActions({init: '/memos/init'})
   }
 })
 export default class extends Vue {
-  // @State list;
+  @memosMod.State('list') list;
+  @memosMod.Action('init') init;
 
-  init: () => any
+  // init: () => any
 
   created() {
     this.init()
+    // this.list
   }
  }
 
