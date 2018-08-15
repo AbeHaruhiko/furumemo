@@ -2,7 +2,7 @@
   <section>
     <h1 class="header">Nuxt TypeScript Starter</h1>
     <div class="cards">
-      <div v-for="memo in memos" :key="memo.id">memo.itemName</div>
+      <div v-for="memo in memos" :key="memo.id">{{memo.itemName}}</div>
       <Card v-for="person in people" :key="person.id" :person="person"></Card>
     </div>
   </section>
@@ -13,18 +13,52 @@ import {
   Component,
   Vue
 } from "nuxt-property-decorator"
-import { State } from "vuex-class"
+import { State, Getter } from "vuex-class"
 import Card from "~/components/Card.vue"
+import { mapGetters, mapActions, mapState } from "vuex";
+import * as memosModule from '@/store/memos'
 
 @Component({
   components: {
     Card
+  },
+  computed: {
+    ...memosModule.mapGetters(['items']),  // スラッシュはstoreのモジュール/getter名
+  },
+  methods: {
+    ...memosModule.mapActions(['init']) // スラッシュはstoreのモジュール/action名
   }
 })
 export default class extends Vue {
   @State people;
   @State memos;
-}
+
+  init: () => any
+
+  created() {
+    this.init()
+  }
+ }
+
+// import { mapMutations } from 'vuex'
+
+// export default {
+//   computed: {
+//     todos () { return this.$store.state.todos.list }
+//   },
+//   methods: {
+//     addTodo (e) {
+//       this.$store.commit('todos/add', e.target.value)
+//       e.target.value = ''
+//     },
+//     ...mapMutations({
+//       toggle: 'todos/toggle'
+//     })
+//   },
+//   created: () => {
+//     this.addTodo('hoge')
+//   }
+// }
 </script>
 <style scoped>
 .header {
