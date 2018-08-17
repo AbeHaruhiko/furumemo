@@ -65,9 +65,11 @@ module.exports = {
   modules: [
     "@nuxtjs/axios",
     "~/modules/typescript.js",
-    "@nuxtjs/dotenv"
+    "@nuxtjs/dotenv",
+    '@nuxtjs/vuetify'
   ],
   axios: {},
+  vuetify: {},
   plugins: [
     {
       src: '~/plugins/firestore'
