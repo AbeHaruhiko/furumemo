@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="header">Nuxt TypeScript Starter</h1>
+    <h1 class="header">あなたの寄付状況</h1>
     <div class="cards">
       <Card v-for="memo in list" :key="memo.id" :memo="memo"></Card>
     </div>
