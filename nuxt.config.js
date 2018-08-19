@@ -69,5 +69,8 @@ module.exports = {
     {
       src: '~/plugins/firestore'
     }
-  ]
+  ],
+  router: {
+    middleware: 'authenticated'
+  }
 }

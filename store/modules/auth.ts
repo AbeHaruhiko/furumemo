@@ -43,3 +43,9 @@ export const mutations = {
     // console.log('3:' + state.user[payload[1]])
   }
 }
+
+export const getters = {
+  isAuthenticated (state) {
+    return !!state.user
+  }
+}
