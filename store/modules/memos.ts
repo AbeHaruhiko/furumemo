@@ -6,6 +6,13 @@ const memosRef = firestore.collection('memos')
 export const state = () => ({
   list: []
 })
+// export const state = function () {
+//   console.log('modules/memos: function for returning state started.')
+//   return 
+//   ({
+//   list: []
+// })
+// }
 
 export const actions = {
   init: firebaseAction(({ bindFirebaseRef }) => {

@@ -1,5 +1,6 @@
 <template>
   <section>
+    <div><nuxt-link to="/intro">Intro</nuxt-link></div>
     <h1 class="header">あなたの寄付状況</h1>
     <div class="cards">
       <Card v-for="memo in list" :key="memo.id" :memo="memo"></Card>
@@ -28,7 +29,12 @@ export default class extends Vue {
   @memosMod.Action('init') init;
 
   created() {
+    // TODO: listが未取得の場合のみinit
     this.init()
+  }
+
+  mounted() {
+    console.log('pages/index mounted.')
   }
  }
 </script>

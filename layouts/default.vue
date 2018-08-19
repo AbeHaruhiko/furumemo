@@ -52,7 +52,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else :key="item.text" @click="">
+          <v-list-tile v-else :key="item.text" @click="" v-bind:to="item.to">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -190,8 +190,8 @@
       dialog: false,
       drawer: null,
       items: [
-        { icon: 'home', text: 'ホーム'},
-        { icon: 'contacts', text: 'Contacts' },
+        { icon: 'home', text: 'ホーム', to: '/'},
+        { icon: 'contacts', text: 'Contacts', to: '/intro' },
         { icon: 'history', text: 'Frequently contacted' },
         { icon: 'content_copy', text: 'Duplicates' },
         {
