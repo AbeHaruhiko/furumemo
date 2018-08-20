@@ -7,7 +7,7 @@ import firebase from '~/plugins/firebase'
 // })
 export const state = function() {
   // console.log('modules/auth: function for returning state started.')
-  return ({ user: {} })
+  return ({ user: null })
 }
 
 export const actions = {
