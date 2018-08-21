@@ -59,6 +59,8 @@ export default class extends Vue {
     console.log('pages/intro/mounted called.')
     user = await authChanged()
     this.setUser(user)
+    console.log('here.')
+    this.$router.push('/')
   }
 }
 </script>

@@ -91,14 +91,38 @@
       <v-btn icon>
         <v-icon>notifications</v-icon>
       </v-btn>
-      <v-btn icon large>
+      <!-- <v-btn icon large>
         <v-avatar size="32px" tile>
           <img
             src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
             alt="Vuetify"
           >
         </v-avatar>
-      </v-btn>
+      </v-btn> -->
+      <v-menu offset-y left>
+        <v-btn
+          slot="activator"
+          dark
+          icon
+        >
+          <v-avatar size="32px" tile>
+            <img
+              src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+              alt="Vuetify"
+            >
+            </v-avatar>
+          </v-btn>
+
+        <v-list>
+          <v-list-tile
+            v-for="(item, i) in account_menu_items"
+            :key="i"
+            @click="item.click_action"
+          >
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
@@ -184,47 +208,34 @@
   </v-app>
 </template>
 
-<script>
-  export default {
-    data: () => ({
-      dialog: false,
-      drawer: null,
-      items: [
-        { icon: 'home', text: 'ホーム', to: '/'},
-        { icon: 'contacts', text: 'Contacts', to: '/intro' },
-        { icon: 'history', text: 'Frequently contacted' },
-        { icon: 'content_copy', text: 'Duplicates' },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Labels',
-          model: true,
-          children: [
-            { icon: 'add', text: 'Create label' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
-          ]
-        },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
-      ]
-    }),
-    props: {
-      source: String
-    }
+<script lang="ts">
+import {
+  Component,
+  Vue
+} from "nuxt-property-decorator"
+import firebase from '~/plugins/firebase'
+
+@Component({
+  props: {
+    // source: String
   }
+})
+export default class extends Vue {
+  dialog = false
+  drawer = null
+  items = [
+    { icon: 'home', text: 'ホーム', to: '/'},
+    { icon: 'contacts', text: 'Contacts', to: '/intro' }
+  ]
+  account_menu_items = [
+    { title: 'ログアウト', click_action: this.logout }
+  ]
+ 
+  async logout() {
+    console.log('/laytous/default/logout calles.')
+    console.log(firebase.auth().currentUser)
+    await firebase.auth().signOut()
+    console.log(firebase.auth().currentUser)
+  }
+}
 </script>
