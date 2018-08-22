@@ -68,9 +68,10 @@ module.exports = {
   plugins: [
     {
       src: '~/plugins/firestore'
-    }
+    },
+    '~/plugins/firebaseAuthChanged'
   ],
   router: {
-    middleware: 'authenticated'
+    middleware: 'router-auth'
   }
 }

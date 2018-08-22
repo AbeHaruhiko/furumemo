@@ -1,11 +1,20 @@
 import firebase from '~/plugins/firebase'
 
-function authChanged () {
+function authChanged (context) {
   console.log('plubing/firebaseAuthChanged/authChanged calld.(not changed yet.')
+
+  const { store } = context
+
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged((user) => {
       console.log('auth changed.')
-      resolve(user || false)
+      console.log('user =>', user)
+      // resolve(user || false)
+      // if (user) {
+        resolve(store.module.auth.commit('setUser', user))
+      // } else {
+      //   resolve()
+      // }
     })
   })
 }

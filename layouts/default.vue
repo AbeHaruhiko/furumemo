@@ -214,6 +214,10 @@ import {
   Vue
 } from "nuxt-property-decorator"
 import firebase from '~/plugins/firebase'
+import authChanged from '~/plugins/firebaseAuthChanged'
+import { namespace } from "vuex-class"
+
+const authMod = namespace('modules/auth')
 
 @Component({
   props: {
@@ -221,6 +225,10 @@ import firebase from '~/plugins/firebase'
   }
 })
 export default class extends Vue {
+  @authMod.Action('setUser') setUser
+
+  // $router // 無いとfunction内でthis.$routerが解決できない（
+
   dialog = false
   drawer = null
   items = [
@@ -232,10 +240,21 @@ export default class extends Vue {
   ]
  
   async logout() {
-    console.log('/laytous/default/logout calles.')
-    console.log(firebase.auth().currentUser)
+    console.log('/laytous/default/logout called.')
+    console.log('currentUser =>', firebase.auth().currentUser)
     await firebase.auth().signOut()
-    console.log(firebase.auth().currentUser)
+    console.log('currentUser =>', firebase.auth().currentUser)
   }
+  // async mounted() {
+  //   console.log('layouts/default/mounted called.')
+  //   let user = await authChanged()
+  //   this.setUser(user)
+  //   console.log('here.')
+  //   if (user) {
+  //     this.$router.push('/')
+  //   } else {
+  //     this.$router.push('/intro')
+  //   }
+  // }
 }
 </script>

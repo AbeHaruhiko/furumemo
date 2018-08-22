@@ -18,16 +18,14 @@ import {
 import { namespace } from "vuex-class"
 
 import firebase from '~/plugins/firebase'
-import authChanged from '~/plugins/firebaseAuthChanged'
 
 const authMod = namespace('modules/auth')
 
 @Component ({
 })
 export default class extends Vue {
-    @authMod.State('user') user
-    @authMod.Action('signInAnonymously') signInAnonymously
-    @authMod.Action('setUser') setUser
+  @authMod.State('user') user
+  @authMod.Action('signInAnonymously') signInAnonymously
 
   // @Prop({type: String}) source:String
 
@@ -52,15 +50,6 @@ export default class extends Vue {
 
   signin() {
     console.log('signin clicked.')
-  }
-
-  async mounted() {
-    let user
-    console.log('pages/intro/mounted called.')
-    user = await authChanged()
-    this.setUser(user)
-    console.log('here.')
-    this.$router.push('/')
   }
 }
 </script>
