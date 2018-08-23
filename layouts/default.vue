@@ -91,14 +91,6 @@
       <v-btn icon>
         <v-icon>notifications</v-icon>
       </v-btn>
-      <!-- <v-btn icon large>
-        <v-avatar size="32px" tile>
-          <img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-          >
-        </v-avatar>
-      </v-btn> -->
       <v-menu offset-y left>
         <v-btn
           slot="activator"
@@ -106,12 +98,9 @@
           icon
         >
           <v-avatar size="32px" tile>
-            <img
-              src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-              alt="Vuetify"
-            >
-            </v-avatar>
-          </v-btn>
+            <v-icon dark>account_circle</v-icon>
+          </v-avatar>
+        </v-btn>
 
         <v-list>
           <v-list-tile
@@ -233,7 +222,7 @@ export default class extends Vue {
   drawer = null
   items = [
     { icon: 'home', text: 'ホーム', to: '/'},
-    { icon: 'contacts', text: '寄付状況', to: '/donation-status' }
+    { icon: 'list', text: '寄付状況', to: '/donation-status' }
   ]
   account_menu_items = [
     { title: 'ログアウト', click_action: this.logout }
