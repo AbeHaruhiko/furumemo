@@ -3,6 +3,8 @@ export default function ({ store, route, redirect }) {
   // console.log(store)
   // console.dir(route)
   console.log(store.getters['modules/auth/isAuthenticated'])
+
+  if (route.path === '/custom') return
   if (!store.getters['modules/auth/isAuthenticated'] && route.path != '/intro') {
     // 未認証で、いま/introにいないので、introで認証を促す
     console.log('redirecting to \'/intro\' ......')
@@ -11,6 +13,6 @@ export default function ({ store, route, redirect }) {
   if (store.getters['modules/auth/isAuthenticated'] && route.path != '/') {
     // メイン画面表示
     console.log('redirecting to \'/\' ......')
-    redirect('/')
+    redirect('/custom')
   }
 }

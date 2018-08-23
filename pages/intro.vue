@@ -33,6 +33,10 @@ export default class extends Vue {
   // data: () => ({
   //   drawer: null
   // })
+  // layout = 'intro'
+  // @Prop({type: String}) layout: String
+  // layout: () => ('intro')
+
   startAsGuest() {
     console.log('startAsGuest clicked.')
 
