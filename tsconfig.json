@@ -16,6 +16,6 @@
     "paths": {
       "~/*": ["./*"]
     },
-    "types": ["vue-router"]
+    "types": ["vue-router", "@firebase/auth-types"]
   }
 }

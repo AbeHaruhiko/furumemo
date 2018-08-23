@@ -9,10 +9,12 @@ function authChanged ({ store, redirect }) {
     firebase.auth().onAuthStateChanged((user) => {
       console.log('auth changed.')
       console.log('user =>', user)
-      store.commit('modules/auth/setUser', user)
+      store.dispatch('modules/auth/setUser', user)
       if (user) {
+        console.log('redirecting to \'/\' ......')
         redirect('/')
       } else {
+        console.log('redirecting to \'/intro\' ......')
         redirect('/intro')
       }      
       // resolve()

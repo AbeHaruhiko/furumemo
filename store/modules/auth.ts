@@ -1,4 +1,5 @@
 import firebase from '~/plugins/firebase'
+import { User } from '@firebase/auth-types'
 
 // export const state = () => ({
 //   // todo: 2018/08/19 これがあると Do not mutate vuex store state outside mutation handlers 発生
@@ -30,11 +31,12 @@ export const actions = {
 }
 
 export const mutations = {
-  setUser (state, payload) {
+  setUser (state, payload: User) {
     console.log('modules/auth/mutations/setUser called.')
     console.dir(payload)
     // state.user = payload
-    state.user = JSON.parse(JSON.stringify(payload))
+    // state.user = JSON.parse(JSON.stringify(payload))
+    state.user = payload ? payload.toJSON(): null
     // Object.assign(state.user, payload)
     // // https://github.com/nuxt/nuxt.js/issues/1917
     // console.log('1:' + payload[1])
