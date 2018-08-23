@@ -18,10 +18,12 @@ import {
 import { namespace } from "vuex-class"
 
 import firebase from '~/plugins/firebase'
+import ComponentOptions from '~/layouts/component-options-layout'
 
 const authMod = namespace('modules/auth')
 
 @Component ({
+  layout: 'intro'
 })
 export default class extends Vue {
   @authMod.State('user') user

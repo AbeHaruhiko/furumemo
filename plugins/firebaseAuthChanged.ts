@@ -12,7 +12,7 @@ function authChanged ({ store, redirect, route }) {
       store.dispatch('modules/auth/setUser', user)
       if (user) {
         console.log('redirecting to \'/\' ......')
-        redirect('/custom')
+        redirect('/')
       } else {
         console.log('redirecting to \'/intro\' ......')
         redirect('/intro')

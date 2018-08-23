@@ -13,6 +13,6 @@ export default function ({ store, route, redirect }) {
   if (store.getters['modules/auth/isAuthenticated'] && route.path != '/') {
     // メイン画面表示
     console.log('redirecting to \'/\' ......')
-    redirect('/custom')
+    redirect('/')
   }
 }
