@@ -10,11 +10,12 @@ function authChanged ({ store, redirect, route }) {
       console.log('auth changed.')
       console.log('user =>', user)
       store.dispatch('modules/auth/setUser', user)
+      console.log('dispatch done.')
       if (user) {
         console.log('redirecting to \'/donation-status\' ......')
         redirect('/donation-status')
       } else {
-        if (route.to !== '/') {
+        if (route.path !== '/') {
           console.log('redirecting to \'/\' ......')
           redirect('/')
         }
