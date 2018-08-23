@@ -34,7 +34,7 @@ export default class extends Vue {
   }
 
   mounted() {
-    console.log('pages/index mounted.')
+    console.log('pages/donation-status mounted.')
   }
  }
 </script>

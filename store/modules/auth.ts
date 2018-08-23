@@ -33,7 +33,8 @@ export const actions = {
 export const mutations = {
   setUser (state, payload: User) {
     console.log('modules/auth/mutations/setUser called.')
-    console.dir(payload)
+    console.log('payload => ', payload)
+    console.log('state => ', state)
     // state.user = payload
     // state.user = JSON.parse(JSON.stringify(payload))
     state.user = payload ? payload.toJSON(): null
