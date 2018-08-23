@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div><nuxt-link to="/intro">Intro</nuxt-link></div>
+    <!-- <div><nuxt-link to="/intro">Intro</nuxt-link></div> -->
     <h1 class="header">あなたの寄付状況</h1>
     <div class="cards">
       <Card v-for="memo in list" :key="memo.id" :memo="memo"></Card>

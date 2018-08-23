@@ -233,7 +233,7 @@ export default class extends Vue {
   drawer = null
   items = [
     { icon: 'home', text: 'ホーム', to: '/'},
-    { icon: 'contacts', text: 'Contacts', to: '/intro' }
+    { icon: 'contacts', text: '寄付状況', to: '/donation-status' }
   ]
   account_menu_items = [
     { title: 'ログアウト', click_action: this.logout }

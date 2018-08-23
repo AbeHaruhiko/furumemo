@@ -18,7 +18,7 @@
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md4>
-            <div><nuxt-link to="/">Home</nuxt-link></div>
+            <!-- <div><nuxt-link to="/">Home</nuxt-link></div> -->
             <v-btn round color="primary" dark @click="startAsGuest">ゲストではじめる</v-btn>
             または
             <v-btn round color="primary" dark @click="signin">サインイン</v-btn>

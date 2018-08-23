@@ -10,9 +10,9 @@ export default function ({ store, route, redirect }) {
     console.log('redirecting to \'/\' ......')
     redirect('/')
   }
-  if (store.getters['modules/auth/isAuthenticated'] && route.path != '/donation_status') {
+  if (store.getters['modules/auth/isAuthenticated'] && route.path != '/donation-status') {
     // メイン画面表示
-    console.log('redirecting to \'/donation_status\' ......')
-    redirect('/donation_status')
+    console.log('redirecting to \'/donation-status\' ......')
+    redirect('/donation-status')
   }
 }

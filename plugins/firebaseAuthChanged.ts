@@ -11,8 +11,8 @@ function authChanged ({ store, redirect, route }) {
       console.log('user =>', user)
       store.dispatch('modules/auth/setUser', user)
       if (user) {
-        console.log('redirecting to \'/donation_status\' ......')
-        redirect('/donation_status')
+        console.log('redirecting to \'/donation-status\' ......')
+        redirect('/donation-status')
       } else {
         if (route.to !== '/') {
           console.log('redirecting to \'/\' ......')
