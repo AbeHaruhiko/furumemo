@@ -19,9 +19,9 @@
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md4>
             <!-- <div><nuxt-link to="/">Home</nuxt-link></div> -->
-            <v-btn round color="primary" dark @click="startAsGuest">ゲストではじめる</v-btn>
+            <v-btn round color="primary" @click="startAsGuest" :disabled="loading">ゲストではじめる</v-btn>
             または
-            <v-btn round color="primary" dark @click="signin">サインイン</v-btn>
+            <v-btn round color="primary" @click="signin" :disabled="loading">サインイン</v-btn>
           </v-flex>
         </v-layout>
       </v-container>
@@ -45,6 +45,8 @@ export default class extends Vue {
   @authMod.State('user') user
   @authMod.Action('signInAnonymously') signInAnonymously
 
+  loading = false
+
   // @Prop({type: String}) source:String
 
   // drawer = null
@@ -58,7 +60,9 @@ export default class extends Vue {
   async startAsGuest() {
     console.log('startAsGuest clicked.')
 
+    this.loading = true
     this.$root.$loading.start()
+
     await this.signInAnonymously()
     await authChanged(this.$store)
     this.$router.push('/donation-state')
