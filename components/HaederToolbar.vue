@@ -7,7 +7,7 @@
     fixed
   >
     <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-      <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="toggleDrawer(!showDrawer)"></v-toolbar-side-icon>
       <span class="hidden-sm-and-down">ふるめも</span>
     </v-toolbar-title>
     <v-text-field
@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue, Emit } from 'nuxt-property-decorator'
 import { namespace, State, Action } from 'vuex-class'
 import firebase from '~/plugins/firebase'
 import authChanged from '~/plugins/firebaseAuthChanged'
@@ -62,12 +62,20 @@ export default class HeaderToolbar extends Vue {
   @authMod.Action('setUser') setUser
   @authMod.Action('signOut') signOut
 
-  @Action('setDrawer') setDrawer
+  @Prop({ type: Boolean}) showDrawer
 
-  @State('drawer') drawer
+  // @Action('setDrawer') setDrawer
 
-  toggleDrawer() {
-    this.setDrawer(!this.drawer)
+  // @State('drawer') drawer
+
+  // toggleDrawer() {
+  //   this.showDrawer = !this.showDrawer
+  // }
+
+  @Emit()
+  toggleDrawer(value) {
+    console.log('this method will emit parents toggle-drawer')
+    // this.$emit('click-toggle-drawer')
   }
 
   account_menu_items = [{ title: 'ログアウト', click_action: this.logout }]

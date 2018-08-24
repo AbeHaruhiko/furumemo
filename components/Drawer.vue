@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     :clipped="$vuetify.breakpoint.lgAndUp"
-    v-model="drawer"
+    v-model="showDrawer"
     fixed
     app
   >
@@ -71,15 +71,17 @@ import { namespace, State, Action } from 'vuex-class'
 
 @Component({})
 export default class Drawer extends Vue {
-  @Action('setDrawer') setDrawer
-  @State('drawer') drawerState
+  @Prop() show
+  // @Action('setDrawer') setDrawer
+  // @State('drawer') drawerState
 
   // v-model="drawer"とするためのgetter, setter
-  get drawer() {
-    return this.drawerState
+  get showDrawer() {
+    return this.show
   }
-  set drawer(value) {
-    this.setDrawer(value)
+  set showDrawer(value) {
+    console.log('components/Drawer set showDrawer called.')
+    this.$emit('toggle-drawer', value)
   }
 
   items = [

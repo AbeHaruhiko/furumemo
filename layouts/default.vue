@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
-    <drawer />
-    <header-toolbar/>
+    <drawer :show="showDrawer" @toggle-drawer="toggleDrawer"/>
+    <header-toolbar :showDrawer="showDrawer" @toggle-drawer="toggleDrawer"/>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center>
@@ -20,7 +20,8 @@
     >
       <v-icon>add</v-icon>
     </v-btn>
-    <v-dialog v-model="dialog" width="800px">
+    <donation-record-dialog />
+    <!-- <v-dialog v-model="dialog" width="800px">
       <v-card>
         <v-card-title
           class="grey lighten-4 py-4 title"
@@ -82,36 +83,38 @@
           <v-btn flat @click="dialog = false">Save</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </v-app>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { namespace, State, Action } from 'vuex-class'
 
 import Drawer from '~/components/Drawer.vue'
 import HeaderToolbar from '~/components/HaederToolbar.vue'
+// import DonationRecordDialog from '~/components/DonationRecordDialog.vue'
 
 @Component({
-  props: {},
   components: {
     Drawer,
     HeaderToolbar
   }
 })
 export default class extends Vue {
+  // @Prop({ type: Boolean }) showDrawer
+  // @Prop({ type: Boolean }) showDialog
+
   // @authMod.Action('setUser') setUser
   // @authMod.Action('signOut') signOut
   // @Action('setDrawer') setDrawer
 
-  // @State('drawer') drawer
+  showDrawer: Boolean = false
 
-  // toggleDrawer() {
-  //   this.setDrawer(!this.drawer)
-  // }
-
-  dialog = false
+  toggleDrawer(value) {
+    console.log('toggleDrawer called.')
+    this.showDrawer = value
+  }
 
   // items = [
   //   { icon: 'home', text: 'ホーム', to: '/' },

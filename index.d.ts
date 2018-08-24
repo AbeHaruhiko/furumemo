@@ -14,5 +14,6 @@ declare module 'vue/types/options' {
 declare module 'vue/types/vue' {
   export interface Vue {
     $loading: any
+    $router: any
   }
 }
