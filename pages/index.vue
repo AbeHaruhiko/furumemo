@@ -30,10 +30,8 @@
 </template>
 
 <script lang="ts">
-import {
-  Vue, Component, Prop
-} from "nuxt-property-decorator"
-import { namespace } from "vuex-class"
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
 
 import firebase from '~/plugins/firebase'
 import ComponentOptions from '~/layouts/component-options-layout'
@@ -41,8 +39,8 @@ import authChanged from '~/plugins/firebaseAuthChanged'
 
 const authMod = namespace('modules/auth')
 
-@Component ({
-  layout: 'intro'
+@Component({
+  layout: 'intro',
 })
 export default class extends Vue {
   @authMod.State('user') user
@@ -58,7 +56,7 @@ export default class extends Vue {
   // @Prop({type: String}) layout: String
   // layout: () => ('intro')
 
- async startAsGuest() {
+  async startAsGuest() {
     console.log('startAsGuest clicked.')
 
     // firebase.auth().signInAnonymously().then(e => {

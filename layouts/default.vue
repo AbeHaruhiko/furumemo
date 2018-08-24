@@ -198,20 +198,15 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Vue
-} from "nuxt-property-decorator"
+import { Component, Vue } from 'nuxt-property-decorator'
 import firebase from '~/plugins/firebase'
 import authChanged from '~/plugins/firebaseAuthChanged'
-import { namespace } from "vuex-class"
+import { namespace } from 'vuex-class'
 
 const authMod = namespace('modules/auth')
 
 @Component({
-  props: {
-    // source: String
-  }
+  props: {},
 })
 export default class extends Vue {
   @authMod.Action('setUser') setUser
@@ -220,32 +215,18 @@ export default class extends Vue {
   dialog = false
   drawer = null
   items = [
-    { icon: 'home', text: 'ホーム', to: '/'},
-    { icon: 'list', text: '寄付状況', to: '/donation-status' }
+    { icon: 'home', text: 'ホーム', to: '/' },
+    { icon: 'list', text: '寄付状況', to: '/donation-status' },
   ]
-  account_menu_items = [
-    { title: 'ログアウト', click_action: this.logout }
-  ]
- 
+  account_menu_items = [{ title: 'ログアウト', click_action: this.logout }]
+
   async logout() {
     console.log('/laytous/default/logout called.')
     console.log('currentUser =>', firebase.auth().currentUser)
-    // await Promise.all([this.signOut(), authChanged()])
     await this.signOut()
     await authChanged(this.$store)
     console.log('currentUser =>', firebase.auth().currentUser)
     this.$router.push('/')
   }
-  // async mounted() {
-  //   console.log('layouts/default/mounted called.')
-  //   let user = await authChanged()
-  //   this.setUser(user)
-  //   console.log('here.')
-  //   if (user) {
-  //     this.$router.push('/')
-  //   } else {
-  //     this.$router.push('/intro')
-  //   }
-  // }
 }
 </script>
