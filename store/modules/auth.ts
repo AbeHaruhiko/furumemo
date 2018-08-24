@@ -24,6 +24,18 @@ export const actions = {
     })
   },
 
+  signOut () {
+    console.log('modules/auth/signInAnonymously called.')
+    return new Promise((resolve, reject) => {
+      firebase.auth().signOut()
+        .then((event) => {
+          console.debug(event)
+          resolve()
+        })
+        .catch((err) => reject(err))
+    })
+  },
+  
   setUser ({ commit }, payload) {
     console.log('modules/auth/actions/setUserAction called.')
     commit('setUser', payload)

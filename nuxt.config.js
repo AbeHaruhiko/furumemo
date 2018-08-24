@@ -69,7 +69,7 @@ module.exports = {
     {
       src: '~/plugins/firestore'
     },
-    '~/plugins/firebaseAuthChanged'
+    // '~/plugins/firebaseAuthChanged'
   ],
   router: {
     middleware: 'router-auth'

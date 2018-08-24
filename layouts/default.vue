@@ -215,8 +215,7 @@ const authMod = namespace('modules/auth')
 })
 export default class extends Vue {
   @authMod.Action('setUser') setUser
-
-  // $router // 無いとfunction内でthis.$routerが解決できない（
+  @authMod.Action('signOut') signOut
 
   dialog = false
   drawer = null
@@ -231,8 +230,11 @@ export default class extends Vue {
   async logout() {
     console.log('/laytous/default/logout called.')
     console.log('currentUser =>', firebase.auth().currentUser)
-    await firebase.auth().signOut()
+    // await Promise.all([this.signOut(), authChanged()])
+    await this.signOut()
+    await authChanged(this.$store)
     console.log('currentUser =>', firebase.auth().currentUser)
+    this.$router.push('/')
   }
   // async mounted() {
   //   console.log('layouts/default/mounted called.')

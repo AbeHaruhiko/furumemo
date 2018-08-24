@@ -37,6 +37,7 @@ import { namespace } from "vuex-class"
 
 import firebase from '~/plugins/firebase'
 import ComponentOptions from '~/layouts/component-options-layout'
+import authChanged from '~/plugins/firebaseAuthChanged'
 
 const authMod = namespace('modules/auth')
 
@@ -57,7 +58,7 @@ export default class extends Vue {
   // @Prop({type: String}) layout: String
   // layout: () => ('intro')
 
-  startAsGuest() {
+ async startAsGuest() {
     console.log('startAsGuest clicked.')
 
     // firebase.auth().signInAnonymously().then(e => {
@@ -69,7 +70,10 @@ export default class extends Vue {
     //     var errorMessage = error.message;
     //     console.log('エラーメッセージ', errorCode, errorMessage)
     //   });
-   this.signInAnonymously()
+    // await Promise.all([this.signInAnonymously(), authChanged()])
+    await this.signInAnonymously()
+    await authChanged(this.$store)
+    this.$router.push('/donation-state')
   }
 
   signin() {
