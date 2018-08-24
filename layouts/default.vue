@@ -1,118 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list dense>
-        <template v-for="item in items">
-          <v-layout
-            v-if="item.heading"
-            :key="item.heading"
-            row
-            align-center
-          >
-            <v-flex xs6>
-              <v-subheader v-if="item.heading">
-                {{ item.heading }}
-              </v-subheader>
-            </v-flex>
-            <v-flex xs6 class="text-xs-center">
-              <a href="#!" class="body-2 black--text">EDIT</a>
-            </v-flex>
-          </v-layout>
-          <v-list-group
-            v-else-if="item.children"
-            v-model="item.model"
-            :key="item.text"
-            :prepend-icon="item.model ? item.icon : item['icon-alt']"
-            append-icon=""
-          >
-            <v-list-tile slot="activator">
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  {{ item.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile
-              v-for="(child, i) in item.children"
-              :key="i"
-              @click=""
-            >
-              <v-list-tile-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  {{ child.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list-group>
-          <v-list-tile v-else :key="item.text" @click="" v-bind:to="item.to">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>
-                {{ item.text }}
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </template>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      color="blue darken-3"
-      dark
-      app
-      fixed
-    >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <span class="hidden-sm-and-down">ふるめも</span>
-      </v-toolbar-title>
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="search"
-        label="Search"
-        class="hidden-sm-and-down"
-      ></v-text-field>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>apps</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>notifications</v-icon>
-      </v-btn>
-      <v-menu offset-y left>
-        <v-btn
-          slot="activator"
-          dark
-          icon
-        >
-          <v-avatar size="32px" tile>
-            <v-icon dark>account_circle</v-icon>
-          </v-avatar>
-        </v-btn>
-
-        <v-list>
-          <v-list-tile
-            v-for="(item, i) in account_menu_items"
-            :key="i"
-            @click="item.click_action"
-          >
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-    </v-toolbar>
+    <drawer />
+    <header-toolbar/>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center>
@@ -198,52 +87,35 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Vue
-} from "nuxt-property-decorator"
-import firebase from '~/plugins/firebase'
-import authChanged from '~/plugins/firebaseAuthChanged'
-import { namespace } from "vuex-class"
+import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace, State, Action } from 'vuex-class'
 
-const authMod = namespace('modules/auth')
+import Drawer from '~/components/Drawer.vue'
+import HeaderToolbar from '~/components/HaederToolbar.vue'
 
 @Component({
-  props: {
-    // source: String
+  props: {},
+  components: {
+    Drawer,
+    HeaderToolbar
   }
 })
 export default class extends Vue {
-  @authMod.Action('setUser') setUser
+  // @authMod.Action('setUser') setUser
+  // @authMod.Action('signOut') signOut
+  // @Action('setDrawer') setDrawer
 
-  // $router // 無いとfunction内でthis.$routerが解決できない（
+  // @State('drawer') drawer
+
+  // toggleDrawer() {
+  //   this.setDrawer(!this.drawer)
+  // }
 
   dialog = false
-  drawer = null
-  items = [
-    { icon: 'home', text: 'ホーム', to: '/'},
-    { icon: 'list', text: '寄付状況', to: '/donation-status' }
-  ]
-  account_menu_items = [
-    { title: 'ログアウト', click_action: this.logout }
-  ]
- 
-  async logout() {
-    console.log('/laytous/default/logout called.')
-    console.log('currentUser =>', firebase.auth().currentUser)
-    await firebase.auth().signOut()
-    console.log('currentUser =>', firebase.auth().currentUser)
-  }
-  // async mounted() {
-  //   console.log('layouts/default/mounted called.')
-  //   let user = await authChanged()
-  //   this.setUser(user)
-  //   console.log('here.')
-  //   if (user) {
-  //     this.$router.push('/')
-  //   } else {
-  //     this.$router.push('/intro')
-  //   }
-  // }
+
+  // items = [
+  //   { icon: 'home', text: 'ホーム', to: '/' },
+  //   { icon: 'list', text: '寄付状況', to: '/donation-status' }
+  // ]
 }
 </script>

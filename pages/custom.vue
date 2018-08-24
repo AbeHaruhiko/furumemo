@@ -5,18 +5,10 @@
 </template>
 
 <script lang="ts">
-import {
-  Vue, Component, Prop
-} from "nuxt-property-decorator"
-import ComponentOptions from '~/layouts/component-options-layout'
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component({
-  layout: 'red'
+  layout: 'red',
 })
-export default class extends Vue {
-  // layout: 'red'
-  // layout (context) {
-  //   return 'red'
-  // }
-}
+export default class extends Vue {}
 </script>
