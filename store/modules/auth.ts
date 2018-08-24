@@ -16,8 +16,7 @@ export const actions = {
     console.log('modules/auth/signInAnonymously called.')
     return new Promise((resolve, reject) => {
       firebase.auth().signInAnonymously()
-        .then((event) => {
-          console.debug(event)
+        .then(() => {
           resolve()
         })
         .catch((err) => reject(err))
@@ -28,14 +27,13 @@ export const actions = {
     console.log('modules/auth/signInAnonymously called.')
     return new Promise((resolve, reject) => {
       firebase.auth().signOut()
-        .then((event) => {
-          console.debug(event)
+        .then(() => {
           resolve()
         })
         .catch((err) => reject(err))
     })
   },
-  
+
   setUser ({ commit }, payload) {
     console.log('modules/auth/actions/setUserAction called.')
     commit('setUser', payload)
