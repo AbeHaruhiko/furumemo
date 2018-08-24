@@ -9,7 +9,7 @@
       fixed
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-        <v-toolbar-side-icon @click.stop="setDrawer(!drawerState)"></v-toolbar-side-icon>
+        <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
         <span class="hidden-sm-and-down">ふるめも</span>
       </v-toolbar-title>
       <v-text-field
@@ -140,7 +140,6 @@ import authChanged from '~/plugins/firebaseAuthChanged'
 import { namespace, State, Action } from 'vuex-class'
 
 const authMod = namespace('modules/auth')
-// const appMod = namespace('modules/app')
 
 import Drawer from '~/components/Drawer.vue'
 
@@ -153,23 +152,16 @@ import Drawer from '~/components/Drawer.vue'
 export default class extends Vue {
   @authMod.Action('setUser') setUser
   @authMod.Action('signOut') signOut
-  @Action('setDrawer') setDrawerAction
+  @Action('setDrawer') setDrawer
 
-  @State('drawer') drawerState
+  @State('drawer') drawer
 
-  get drawer() {
-    return this.drawerState
-  }
-  set drawer(value) {
-    this.setDrawerAction(value)
-  }
-
-  setDrawer(value) {
-    this.setDrawerAction(value)
+  toggleDrawer() {
+    this.setDrawer(!this.drawer)
   }
 
   dialog = false
-  // drawer = null
+
   items = [
     { icon: 'home', text: 'ホーム', to: '/' },
     { icon: 'list', text: '寄付状況', to: '/donation-status' }

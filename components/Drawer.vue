@@ -39,7 +39,6 @@
           <v-list-tile
             v-for="(child, i) in item.children"
             :key="i"
-            @click=""
           >
             <v-list-tile-action v-if="child.icon">
               <v-icon>{{ child.icon }}</v-icon>
@@ -51,7 +50,7 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
-        <v-list-tile v-else :key="item.text" @click="" v-bind:to="item.to">
+        <v-list-tile v-else :key="item.text" v-bind:to="item.to">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -75,6 +74,7 @@ export default class Drawer extends Vue {
   @Action('setDrawer') setDrawer
   @State('drawer') drawerState
 
+  // v-model="drawer"とするためのgetter, setter
   get drawer() {
     return this.drawerState
   }
