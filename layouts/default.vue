@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <drawer></drawer>
+    <drawer />
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       color="blue darken-3"
