@@ -34,7 +34,6 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 
 import firebase from '~/plugins/firebase'
-import ComponentOptions from '~/layouts/component-options-layout'
 import authChanged from '~/plugins/firebaseAuthChanged'
 
 const authMod = namespace('modules/auth')
@@ -59,16 +58,7 @@ export default class extends Vue {
   async startAsGuest() {
     console.log('startAsGuest clicked.')
 
-    // firebase.auth().signInAnonymously().then(e => {
-    //     // ログイン成功
-    //     console.log(e)
-    //   }).catch((error) => {
-    //     // エラーメッセージ
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     console.log('エラーメッセージ', errorCode, errorMessage)
-    //   });
-    // await Promise.all([this.signInAnonymously(), authChanged()])
+    this.$root.$loading.start()
     await this.signInAnonymously()
     await authChanged(this.$store)
     this.$router.push('/donation-state')
