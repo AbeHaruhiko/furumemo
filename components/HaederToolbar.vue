@@ -7,7 +7,7 @@
     fixed
   >
     <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-      <v-toolbar-side-icon @click.stop="toggleDrawer(!showDrawer)"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="setDrawerVisibility(!showDrawer)"></v-toolbar-side-icon>
       <span class="hidden-sm-and-down">ふるめも</span>
     </v-toolbar-title>
     <v-text-field
@@ -73,8 +73,8 @@ export default class HeaderToolbar extends Vue {
   // }
 
   @Emit()
-  toggleDrawer(value) {
-    console.log('this method will emit parents toggle-drawer')
+  setDrawerVisibility(value) {
+    console.log('this method will emit parents set-drawer-visibility.')
     // this.$emit('click-toggle-drawer')
   }
 

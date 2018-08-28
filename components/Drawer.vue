@@ -75,13 +75,14 @@ export default class Drawer extends Vue {
   // @Action('setDrawer') setDrawer
   // @State('drawer') drawerState
 
-  // v-model="drawer"とするためのgetter, setter
+  // v-model="showDrawer"とするためのgetter, setter
   get showDrawer() {
     return this.show
   }
   set showDrawer(value) {
+    // setterでは@Emitが使えない。
     console.log('components/Drawer set showDrawer called.')
-    this.$emit('toggle-drawer', value)
+    this.$emit('set-drawer-visibility', value)
   }
 
   items = [

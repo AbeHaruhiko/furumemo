@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
-    <drawer :show="showDrawer" @toggle-drawer="toggleDrawer"/>
-    <header-toolbar :showDrawer="showDrawer" @toggle-drawer="toggleDrawer"/>
+    <drawer :show="showDrawer" @set-drawer-visibility="setDrawerVisibility"/>
+    <header-toolbar :showDrawer="showDrawer" @set-drawer-visibility="setDrawerVisibility"/>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center>
@@ -16,11 +16,11 @@
       color="pink"
       dark
       fixed
-      @click.stop="dialog = !dialog"
+      @click.stop="setDonationRecDialogVisiblity(!showDonationRecDialg)"
     >
       <v-icon>add</v-icon>
     </v-btn>
-    <donation-record-dialog />
+    <donation-record-dialog :show="showDonationRecDialg" @set-donation-rec-dialog-visiblity="setDonationRecDialogVisiblity"/>
     <!-- <v-dialog v-model="dialog" width="800px">
       <v-card>
         <v-card-title
@@ -93,12 +93,13 @@ import { namespace, State, Action } from 'vuex-class'
 
 import Drawer from '~/components/Drawer.vue'
 import HeaderToolbar from '~/components/HaederToolbar.vue'
-// import DonationRecordDialog from '~/components/DonationRecordDialog.vue'
+import DonationRecordDialog from '~/components/DonationRecordDialog.vue'
 
 @Component({
   components: {
     Drawer,
-    HeaderToolbar
+    HeaderToolbar,
+    DonationRecordDialog
   }
 })
 export default class extends Vue {
@@ -110,12 +111,18 @@ export default class extends Vue {
   // @Action('setDrawer') setDrawer
 
   showDrawer: Boolean = false
+  showDonationRecDialg: Boolean = false
 
-  toggleDrawer(value) {
+  setDrawerVisibility(value) {
     console.log('toggleDrawer called.')
     this.showDrawer = value
+    console.log('show drawer? => ', this.showDrawer)
   }
 
+  setDonationRecDialogVisiblity(value) {
+    this.showDonationRecDialg = value
+    console.log('show dialog? => ', this.showDonationRecDialg)
+  }
   // items = [
   //   { icon: 'home', text: 'ホーム', to: '/' },
   //   { icon: 'list', text: '寄付状況', to: '/donation-status' }

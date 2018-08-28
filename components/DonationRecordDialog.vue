@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="show" width="800px">
+  <v-dialog v-model="showDialog" width="800px">
     <v-card>
       <v-card-title
         class="grey lighten-4 py-4 title"
@@ -57,18 +57,33 @@
       <v-card-actions>
         <v-btn flat color="primary">More</v-btn>
         <v-spacer></v-spacer>
-        <v-btn flat color="primary" @click="show = false">Cancel</v-btn>
-        <v-btn flat @click="show = false">Save</v-btn>
+        <v-btn flat color="primary" @click="setDonationRecDialogVisiblity(false)">Cancel</v-btn>
+        <v-btn flat @click="setDonationRecDialogVisiblity(false)">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
-<script lang="t">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+<script lang="ts">
+import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator'
 
 @Component({})
 export default class DonationRecordDialog extends Vue {
   @Prop() show = false
+
+  // v-model="showDialog"とするためのgetter, setter
+  get showDialog() {
+    return this.show
+  }
+  set showDialog(value) {
+    // setterでは@Emitが使えない。
+    // this.$emit('set-donation-rec-dialog-visiblity', value)
+    this.setDonationRecDialogVisiblity(value)
+  }
+
+  @Emit()
+  setDonationRecDialogVisiblity(value) {
+    console.log('this method will emit parents set-donation-rec-dialog-visiblity')
+  }
 }
 </script>
