@@ -61,7 +61,8 @@ module.exports = {
     "@nuxtjs/axios",
     "~/modules/typescript.js",
     "@nuxtjs/dotenv",
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/font-awesome'
   ],
   axios: {},
   vuetify: {},
