@@ -50,7 +50,7 @@
               <v-text-field
                 slot="activator"
                 v-model="applicatedAtFormatted"
-                label="寄付日（申請日）"
+                placeholder="寄付日（申請日）"
                 prepend-icon="event"
                 readonly
               ></v-text-field>
