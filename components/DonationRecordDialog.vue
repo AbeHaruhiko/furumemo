@@ -77,7 +77,7 @@
         <v-btn flat color="primary">詳細入力</v-btn>
         <v-spacer></v-spacer>
         <v-btn flat color="primary" @click="setDonationRecDialogVisiblity(false)">キャンセル</v-btn>
-        <v-btn flat @click="setDonationRecDialogVisiblity(false)">登録</v-btn>
+        <v-btn flat @click="setDonationRecDialogVisiblity(false)">保存</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
