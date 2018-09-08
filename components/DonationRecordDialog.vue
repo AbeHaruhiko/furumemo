@@ -37,6 +37,7 @@
           <v-flex xs12 sm6 md4>
             <v-menu
               ref="menuApplicatedAt"
+              :open-on-click="false"
               :close-on-content-click="false"
               v-model="menuApplicatedAt"
               :nudge-right="40"
@@ -50,9 +51,10 @@
               <v-text-field
                 slot="activator"
                 v-model="applicatedAtFormatted"
-                label="寄付日（申請日）"
+                placeholder="寄付日（申請日）"
                 prepend-icon="event"
-                readonly
+                append-icon="arrow_drop_down"
+                @click:append="menuApplicatedAt = !menuApplicatedAt"
               ></v-text-field>
               <v-date-picker
                 v-model="applicatedAt"
